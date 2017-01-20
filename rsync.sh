@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #push
 if [[ $# -eq 0 ]] ; then
-    rsync -azvP --delete ~/Downloads/anywhere/elts 'userver@192.157.226.233':~/anywhere
+    rsync -azvP --delete ~/Downloads/anywhere/elts/ 'userver@192.157.226.233':~/anywhere/elts
     exit 0
 fi
 
