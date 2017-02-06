@@ -12,7 +12,7 @@ case $key in
         rsync -azvP 'userver@192.157.226.233':~/anywhere  ~/repositories/anywhere/  
         ;;
     usb)
-        rsync -azvP --delete ~/Downloads/anywhere/elts/ /run/media/zhouyu/backup  
+        rsync -azvP --delete ~/Downloads/anywhere/elts/ /run/media/zhouyu/backup/anywhere/elts  
         ;;
     s)
         rsync -azvP --delete ~/Downloads/anywhere/elts/ 'userver@192.157.226.233':~/anywhere/elts
