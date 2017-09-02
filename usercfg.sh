@@ -9,13 +9,19 @@ elif [ -x "$(command -v dnf)" ]; then
 fi 
 
 #eval $yum_cmd -v 
-####Config Git#####
+#### Config Git #####
 $yum_cmd install git
 git config --global user.email "zhouyu5460@gmail.com"
 git config --global user.name "fossy"
+
+#### Config VIM ######
+if ! [ -x "$(command -v vim)" ]; then
+    $yum_cmd install vim
+fi
 echo "alias vi=vim" >> .bashrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+### Config Pip ###
 if ! [ -x "$(command -v pip)" ]; then
     $yum_cmd install pip
 else
