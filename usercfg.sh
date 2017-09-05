@@ -10,22 +10,38 @@ fi
 
 #eval $yum_cmd -v 
 #### Config Git #####
-$yum_cmd install git
-git config --global user.email "zhouyu5460@gmail.com"
-git config --global user.name "fossy"
+if [ 'git' == $1 ] || [ all == $1 ];
+then
+    $yum_cmd install git
+    git config --global user.email "zhouyu5460@gmail.com"
+    git config --global user.name "fossy"
+fi
 
 #### Config VIM ######
-if ! [ -x "$(command -v vim)" ]; then
-    $yum_cmd install vim
+echo 'config vim'
+if [ 'vim' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v vim)" ]; then
+        $yum_cmd install vim
+    fi
+    echo "alias vi=vim" >> ~/.bashrc
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-echo "alias vi=vim" >> .bashrc
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 ### Config Pip ###
-if ! [ -x "$(command -v pip)" ]; then
-    $yum_cmd install pip
-else
-    echo "pip installed"
+if [ 'pip' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v pip)" ]; then
+        $yum_cmd install pip
+    else
+        echo "pip installed"
+    fi
+    pip install shadowsocks
 fi
-pip install shadowsocks
-   
+
+### Config bashrc ###
+if [ 'bash' = $1 ] || [ all == $1 ];
+then
+    echo 'export PATH=~/apps.sh:$PATH' >> ~/.bashrc
+fi
+
