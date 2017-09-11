@@ -8,6 +8,9 @@ fi
 #do
 key="$1"
 case $key in
+    l)
+        ssh userver@192.157.226.233
+        ;;
     pull)
         if [ "$2" == 'remote' ]
         then
