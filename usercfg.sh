@@ -43,5 +43,6 @@ fi
 if [ 'bash' = $1 ] || [ all == $1 ];
 then
     echo 'export PATH=~/apps.sh:$PATH' >> ~/.bashrc
+    echo 'alias notes="cd ~/Documents/notes"'>> ~/.bashrc
 fi
 
