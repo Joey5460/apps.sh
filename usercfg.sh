@@ -12,7 +12,9 @@ fi
 #### Config Git #####
 if [ 'git' == $1 ] || [ all == $1 ];
 then
-    $yum_cmd install git
+	if ! [ -x "$(command -v git)" ]; then
+	    $yum_cmd install git
+	    fi
     git config --global user.email "zhouyu5460@gmail.com"
     git config --global user.name "fossy"
 fi
@@ -43,6 +45,8 @@ fi
 if [ 'bash' = $1 ] || [ all == $1 ];
 then
     echo 'export PATH=~/apps.sh:$PATH' >> ~/.bashrc
+    echo 'export PATH=~/apps/qt5/5.5/gcc/bin:$PATH'>>~/.bashrc
+    echo 'export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH'>>~/.bashrc
     echo 'alias notes="cd ~/Documents/notes"'>> ~/.bashrc
 fi
 

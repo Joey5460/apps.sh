@@ -12,25 +12,18 @@ Plugin 'VundleVim/Vundle.vim'
 "The following are examples of different formats supported.
 "...........................
 "plugin on GitHub repo
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-
-Plugin 'tpope/vim-fugitive'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'klen/python-mode'
 
 "...........................
 "plugin from http://vim-scripts.org.vim.scripts.html
 
-Plugin 'L9'
+"Plugin 'L9'
 
 "...........................
 "Git plugin not hosted on GitHub
 
 Plugin 'https://github.com/scrooloose/nerdtree'
-Plugin 'https://github.com/wincent/command-t.git'
-Plugin 'git@github.com:szw/vim-tags.git'
 call vundle#end()
 syntax on
 filetype plugin indent on
