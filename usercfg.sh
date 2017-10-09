@@ -16,7 +16,7 @@ then
 	    $yum_cmd install git
 	    fi
     git config --global user.email "zhouyu5460@gmail.com"
-    git config --global user.name "fossy"
+    git config --global user.name "fosy"
 fi
 
 #### Config VIM ######
@@ -24,8 +24,11 @@ echo 'config vim'
 if [ 'vim' = $1 ] || [ all == $1 ];
 then
     if ! [ -x "$(command -v vim)" ]; then
-        $yum_cmd install vim
+        sudo $yum_cmd install vim
     fi
+    if ! [ -x "$(command -v xclip)" ]; then
+		sudo  $yum_cmd install xclip
+	fi
     echo "alias vi=vim" >> ~/.bashrc
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
@@ -50,3 +53,8 @@ then
     echo 'alias notes="cd ~/Documents/notes"'>> ~/.bashrc
 fi
 
+### repository###
+if [ 'rpmfusion' = $1 ] || [ all == $1 ];
+then
+#sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+fi
