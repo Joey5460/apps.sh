@@ -9,6 +9,7 @@ call vundle#begin()
 
 "Plugin 'gmarik/Vundle.vim'
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'kannokanno/previm'
 "The following are examples of different formats supported.
 "...........................
 "plugin on GitHub repo
@@ -50,7 +51,7 @@ let javaScript_fold=1    " JavaScript
 "set foldexpr=FoldBrace()
 "set foldmethod=expr
 
-let g:previm_open_cmd='open -a chromium-browser'
+let g:previm_open_cmd= 'firefox'
 augroup PrevimSettings
     autocmd!
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
@@ -74,10 +75,12 @@ set pastetoggle=<F2>
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 autocmd FileType python noremap <silent> <F5> :!clear;python %<CR>
 autocmd FileType c noremap <F7> :wa <CR>: make<CR>
+autocmd FileType c noremap <F5> : !make flash <CR>
 autocmd FileType cpp noremap <F7> :wa <CR>: make<CR>
 autocmd FileType cpp noremap <F5> :wa <CR>: !sh  $PWD/build.sh <CR>
 autocmd FileType javascript noremap <F5> :wa <CR>: !sh  $PWD/build.sh <CR>
-autocmd FileType c noremap <F5> : !make flash <CR>
+autocmd FileType rst noremap <F7> :wa <CR>: !nikola build<CR>
+autocmd FileType rst noremap <F5> :wa <CR>: !nikola serve --browser<CR>
 inoremap ,/  </<C-X><C-O>
 "autocmd sh !./run.sh
 
