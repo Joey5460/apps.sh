@@ -33,7 +33,7 @@ then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-### Config Pip ###
+### Pip ###
 if [ 'pip' = $1 ] || [ all == $1 ];
 then
     if ! [ -x "$(command -v pip)" ]; then
@@ -44,17 +44,36 @@ then
     pip install shadowsocks
 fi
 
-### Config bashrc ###
+### bash ###
 if [ 'bash' = $1 ] || [ all == $1 ];
 then
     echo 'export PATH=~/apps.sh:$PATH' >> ~/.bashrc
+    echo 'alias notes="cd ~/Documents/notes"'>> ~/.bashrc
+fi
+
+### QT####
+if [ 'qt' = $1 ] || [ all == $1 ];
+then
     echo 'export PATH=~/apps/qt5/5.5/gcc/bin:$PATH'>>~/.bashrc
     echo 'export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH'>>~/.bashrc
-    echo 'alias notes="cd ~/Documents/notes"'>> ~/.bashrc
+fi
+
+### cordova####
+if [ 'cordova' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v npm)" ]; then
+        sudo $yum_cmd install nodejs
+    fi
+
+    if ! [ -x "$(command -v cordova)" ]; then
+        sudo npm install -g cordova
+    fi
+    echo 'export ANDROID_HOME=~/apps/android-sdk-linux'>>~/.bashrc
+    echo 'export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH'>>~/.bashrc
 fi
 
 ### repository###
 if [ 'rpmfusion' = $1 ] || [ all == $1 ];
 then
-#sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 fi
