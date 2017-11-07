@@ -17,6 +17,7 @@ then
 	    fi
     git config --global user.email "zhouyu5460@gmail.com"
     git config --global user.name "fosy"
+    git config --global merge.tool "vimdiff"
 fi
 
 #### Config VIM ######
