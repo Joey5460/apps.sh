@@ -51,17 +51,18 @@ let javaScript_fold=1    " JavaScript
 "set foldexpr=FoldBrace()
 "set foldmethod=expr
 
-let g:previm_open_cmd= 'firefox'
+let g:previm_open_cmd= 'chromium-browser'
 augroup PrevimSettings
     autocmd!
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    "autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    autocmd BufNewFile,BufRead *.{rst} set filetype=rst
 augroup END
 
 """"""
 "session
 "
-let g:session_autosave='yes'
-autocmd QuickFixCmdPost [^l]* nested cwindow
+"let g:session_autosave='yes'
+"autocmd QuickFixCmdPost [^l]* nested cwindow
 
 """"""""""
 "shortcut
@@ -77,10 +78,10 @@ autocmd FileType python noremap <silent> <F5> :!clear;python %<CR>
 autocmd FileType c noremap <F7> :wa <CR>: make<CR>
 autocmd FileType c noremap <F5> : !make flash <CR>
 autocmd FileType cpp noremap <F7> :wa <CR>: make<CR>
-autocmd FileType cpp noremap <F5> :wa <CR>: !sh  $PWD/build.sh <CR>
+autocmd FileType cpp noremap <F5> :wa <CR>: !make run <CR>
 autocmd FileType javascript noremap <F5> :wa <CR>: !sh  $PWD/build.sh <CR>
-autocmd FileType rst noremap <F7> :wa <CR>: !nikola build<CR>
-autocmd FileType rst noremap <F5> :wa <CR>: !nikola serve --browser<CR>
+autocmd FileType rst noremap <F7> :wa <CR>: !make <CR>
+autocmd FileType rst noremap <F5> :wa <CR>: !make run<CR>
 inoremap ,/  </<C-X><C-O>
 "autocmd sh !./run.sh
 
