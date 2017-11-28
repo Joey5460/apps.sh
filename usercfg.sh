@@ -32,6 +32,7 @@ then
 	fi
     echo "alias vi=vim" >> ~/.bashrc
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    cat vimrc >>~/.vimrc
 fi
 
 ### Pip ###
