@@ -56,8 +56,9 @@ fi
 ### QT####
 if [ 'qt' = $1 ] || [ all == $1 ];
 then
-    echo 'export PATH=~/apps/qt5/5.5/gcc/bin:$PATH'>>~/.bashrc
+    echo 'export PATH=~/apps/qt5/5.5/gcc_64/bin:$PATH'>>~/.bashrc
     echo 'export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH'>>~/.bashrc
+    sudo dnf install  mesa-libGL-devel
 fi
 
 ### cordova####
@@ -79,3 +80,13 @@ if [ 'rpmfusion' = $1 ] || [ all == $1 ];
 then
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 fi
+
+###develop tools###
+if [ 'dev' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v g++)" ]; then
+        sudo dnf install gcc-c++
+    fi
+fi
+
+
