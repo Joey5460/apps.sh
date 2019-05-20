@@ -17,6 +17,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-speeddating'
 Plugin 'jceb/vim-orgmode'
+Plugin 'vim-scripts/Conque-GDB'
 
 "...........................
 "plugin from http://vim-scripts.org.vim.scripts.html

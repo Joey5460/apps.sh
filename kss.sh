@@ -1,6 +1,6 @@
 pkill sslocal
 test "$1" = "us1" \
-    && (echo "****us1****" ; sslocal -c ~/apps.sh/ss-net-us1.json & ) \
+    && (echo "****us1****" ; sslocal -c ~/Documents/etc/ss/ss-net-us1.json & ) \
 || (test "$1" = "" \
-    && echo "****tky****" && sslocal -c ~/apps.sh/ss-net.json &)
+    && echo "****tky****" && sslocal -c ~/Documents/etc/ss/ss-net.json &)
     
