@@ -4,30 +4,17 @@ if [[ $# -eq 0 ]] ; then
     exit 0
 fi
 
-#while [[ $# -gt 0 ]]
-#do
 key="$1"
 case $key in
-    l)
-        ssh userver@192.157.226.233
+    login)
+        #ssh bardia@127.0.0.1 -p2222
+        ssh robot@127.0.0.2 -p2222
         ;;
-    pull)
-        if [ "$2" == 'remote' ]
-        then
-            rsync -azvP 'userver@192.157.226.233':~/anywhere  ~/repositories/anywhere/  
-        elif [ "$2" == 'local' ]
-        then
-            rsync -azvP --delete /run/media/xFrog/backup/anywhere/elts/  ~/Documents/elts 
-        fi
+    backup)
+            rsync -azvP --delete --exclude={.local,.cache}  ~/  /run/media/fosy/ssd500/fosy-home/
         ;;
-    push)
-        if [ "$2" == 'local' ]
-        then
-            rsync -azvP --delete ~/Downloads/anywhere/elts/ /run/media/zhouyu/backup/anywhere/elts  
-        elif [ "$2" == 'remote' ]
-        then
-            rsync -azvP --delete ~/Downloads/anywhere/elts/ 'userver@192.157.226.233':~/anywhere/elts
-        fi
+    restore)
+            rsync -azvP --delete --exclude={.local}  /run/media/fosy/ssd500/fosy-home/  ~/
         ;;
     *)
         ;;
