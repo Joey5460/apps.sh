@@ -8,6 +8,36 @@ elif [ -x "$(command -v dnf)" ]; then
    yum_cmd="dnf"
 fi 
 
+### pip3 ###
+if [ 'pip' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v pip3)" ]; then
+        $yum_cmd install pip3
+    else
+        echo "pip3 installed"
+    fi
+fi
+
+if [ 'shadowsocks' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v sslocal)" ]; then
+	    pip3 install shadowsocks
+    else
+        echo "shadowsocks is installed already"
+    fi
+fi
+
+### proxychains-ng
+if [ 'proxychains' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v proxychains)" ]; then
+        sudo $yum_cmd install proxychains-ng
+	#vi /etc/proxychains.conf
+    else
+        echo "proxychains exists"
+    fi
+fi
+
 #eval $yum_cmd -v 
 #### Config Git #####
 if [ 'git' == $1 ] || [ all == $1 ];
@@ -21,9 +51,9 @@ then
 fi
 
 #### Config VIM ######
-echo 'config vim'
 if [ 'vim' = $1 ] || [ all == $1 ];
 then
+	echo 'config vim'
     if ! [ -x "$(command -v vim)" ]; then
         sudo $yum_cmd install vim
     fi
@@ -35,16 +65,6 @@ then
     cat vimrc >>~/.vimrc
 fi
 
-### Pip ###
-if [ 'pip' = $1 ] || [ all == $1 ];
-then
-    if ! [ -x "$(command -v pip)" ]; then
-        $yum_cmd install pip
-    else
-        echo "pip installed"
-    fi
-    pip install shadowsocks
-fi
 
 ### bash ###
 if [ 'bash' = $1 ] || [ all == $1 ];
@@ -87,6 +107,7 @@ then
     if ! [ -x "$(command -v g++)" ]; then
         sudo dnf install gcc-c++
     fi
+    sudo dnf  install kernel-devel kernel-headers
 fi
 
 
