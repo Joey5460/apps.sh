@@ -51,3 +51,4 @@ export PATH=~/projs/mxe/usr/bin:$PATH
 export CPATH=/usr/local/cuda/include:$CPATH
 export X66=xcomment
 export EDITOR=vi
+alias vi=vim

@@ -85,7 +85,13 @@ then
     if ! [ -x "$(command -v cordova)" ]; then
         sudo npm install -g cordova
     fi
-    echo 'export ANDROID_HOME=~/apps/android-sdk-linux'>>~/.bashrc
+    echo 'export ANDROID_HOME=~/apps/sdk-tools-linux'>>~/.bashrc
+    echo 'export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH'>>~/.bashrc
+fi
+
+if [ 'android' = $1 ] || [ all == $1 ];
+then
+    echo 'export ANDROID_HOME=~/apps/sdk-tools-linux'>>~/.bashrc
     echo 'export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH'>>~/.bashrc
 fi
 
