@@ -10,8 +10,8 @@ fi
 
 #eval $yum_cmd -v 
 #### Config Git #####
-if [ 'git' == $1 ] || [ all == $1 ];
-then
+function gitcfg
+{
 	if ! [ -x "$(command -v git)" ]; then
 	    $yum_cmd install git
 	fi
@@ -19,7 +19,13 @@ then
     git config --global user.email "zhouyu5460@gmail.com"
     git config --global user.name "fossy"
     git config --global merge.tool "vimdiff"
+}
+if [ 'git' == $1 ] || [ all == $1 ];
+then
+    gitcfg
 fi
+
+
 
 #### Config VIM ######
 if [ 'vim' = $1 ] || [ all == $1 ];
@@ -103,18 +109,33 @@ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-rele
 fi
 
 ###develop tools###
-if [ 'dev' = $1 ] || [ all == $1 ];
-then
+function  gcccfg
+{
     if ! [ -x "$(command -v g++)" ]; then
         sudo dnf install gcc-c++
+    else
+        echo "gcc has been installed"
     fi
-    sudo dnf install make
-    sudo dnf install kernel-devel kernel-headers
+}
+function makecfg
+{
+    if ! [ -x "$(command -v make)" ]; then
+        sudo dnf install make
+    else
+        echo "make has been installed"
+    fi
+}
+if [ 'dev' = $1 ] || [ all == $1 ];
+then
+    gcccfg
+    makecfg
+    #sudo dnf install kernel-devel kernel-headers
 fi
-
 ### QT####
 if [ 'qt' = $1 ] || [ all == $1 ];
 then
+    gcccfg
+    makecfg
     echo 'export PATH=~/apps/qt5/5.5/gcc_64/bin:$PATH'>>~/.bashrc
     echo 'export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH'>>~/.bashrc
     sudo dnf install  mesa-libGL-devel
