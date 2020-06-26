@@ -14,10 +14,12 @@ function gitcfg
 {
 	if ! [ -x "$(command -v git)" ]; then
 	    $yum_cmd install git
+	else
+	    echo "git has been installed"
 	fi
     echo "config git"
     git config --global user.email "zhouyu5460@gmail.com"
-    git config --global user.name "fossy"
+    git config --global user.name "zhouyu"
     git config --global merge.tool "vimdiff"
 }
 if [ 'git' == $1 ] || [ all == $1 ];
@@ -30,13 +32,14 @@ fi
 #### Config VIM ######
 if [ 'vim' = $1 ] || [ all == $1 ];
 then
-	echo 'config vim'
+    echo 'config vim'
     if ! [ -x "$(command -v vim)" ]; then
         sudo $yum_cmd install vim
     fi
     if ! [ -x "$(command -v xclip)" ]; then
 		sudo  $yum_cmd install xclip
-	fi
+    fi
+    sed -i '/alias vi=vim/d' ~/.bashrc
     echo "alias vi=vim" >> ~/.bashrc
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     #cat vimrc >>~/.vimrc
@@ -52,13 +55,9 @@ then
     fi
 fi
 
-if [ 'shadowsocks' = $1 ] || [ all == $1 ];
+if [ 'v2ray' = $1 ] || [ all == $1 ];
 then
-    if ! [ -x "$(command -v sslocal)" ]; then
-	    pip3 install --user  shadowsocks
-    else
-        echo "shadowsocks is installed already"
-    fi
+	bash <(curl -L -s https://install.direct/go.sh)
 fi
 
 ### proxychains-ng
@@ -71,7 +70,6 @@ then
         echo "proxychains exists"
     fi
 fi
-
 
 ### bash ###
 if [ 'bash' = $1 ] || [ all == $1 ];
