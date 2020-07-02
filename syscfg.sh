@@ -28,7 +28,6 @@ then
 fi
 
 
-
 #### Config VIM ######
 if [ 'vim' = $1 ] || [ all == $1 ];
 then
@@ -65,6 +64,7 @@ if [ 'proxychains' = $1 ] || [ all == $1 ];
 then
     if ! [ -x "$(command -v proxychains)" ]; then
         sudo $yum_cmd install proxychains-ng
+        sudo sed  -i 's/socks4\s\s127.0.0.1\s9050/socks5 127.0.0.1 1080/g' /etc/proxychains.conf
 	#vi /etc/proxychains.conf
     else
         echo "proxychains exists"
@@ -134,8 +134,15 @@ if [ 'qt' = $1 ] || [ all == $1 ];
 then
     gcccfg
     makecfg
-    echo 'export PATH=~/apps/qt5/5.5/gcc_64/bin:$PATH'>>~/.bashrc
+    sed -i '/export PATH=~/apps/qt5/5.15/gcc_64/bin:$PATH/d' ~/.bashrc
+    sed -i '/export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH/d' ~/.bashrc
+    echo 'export PATH=~/apps/qt5/5.15/gcc_64/bin:$PATH'>>~/.bashrc
     echo 'export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH'>>~/.bashrc
     sudo dnf install  mesa-libGL-devel
 fi
 
+### youtube
+if [ 'youtube' = $1 ] || [ all == $1 ];
+then
+    pip install --upgrade --user youtube-dl
+fi
