@@ -74,6 +74,8 @@ fi
 ### bash ###
 if [ 'bash' = $1 ] || [ all == $1 ];
 then
+    sed -i '/export PATH=~\/apps.sh:$PATH/d'  ~/.bashrc
+    sed -i '/alias notes="cd ~\/Documents\/notes"/d' ~/.bashrc
     echo 'export PATH=~/apps.sh:$PATH' >> ~/.bashrc
     echo 'alias notes="cd ~/Documents/notes"'>> ~/.bashrc
 fi
@@ -134,8 +136,8 @@ if [ 'qt' = $1 ] || [ all == $1 ];
 then
     gcccfg
     makecfg
-    sed -i '/export PATH=~/apps/qt5/5.15/gcc_64/bin:$PATH/d' ~/.bashrc
-    sed -i '/export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH/d' ~/.bashrc
+    sed -i '/export PATH=~\/apps\/qt5\/5.15\/gcc_64\/bin:$PATH/d' ~/.bashrc
+    sed -i '/export PATH=~\/apps\/qt5\/Tools\/QtCreator\/bin:$PATH/d' ~/.bashrc
     echo 'export PATH=~/apps/qt5/5.15/gcc_64/bin:$PATH'>>~/.bashrc
     echo 'export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH'>>~/.bashrc
     sudo dnf install  mesa-libGL-devel
