@@ -97,6 +97,8 @@ fi
 
 if [ 'android' = $1 ] || [ all == $1 ];
 then
+    sed -i '/export ANDROID_HOME=~\/apps\/sdk-tools-linux/d' ~/.bashrc
+    sed -i '/export PATH=$ANDROID_HOME\/tools:$ANDROID_HOME\/platform-tools:$PATH/d' ~/.bashrc
     echo 'export ANDROID_HOME=~/apps/sdk-tools-linux'>>~/.bashrc
     echo 'export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH'>>~/.bashrc
 fi
