@@ -27,32 +27,21 @@ then
     gitcfg
 fi
 
-
 #### Config VIM ######
 if [ 'vim' = $1 ] || [ all == $1 ];
 then
     echo 'config vim'
     if ! [ -x "$(command -v vim)" ]; then
         sudo $yum_cmd install vim
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
     if ! [ -x "$(command -v xclip)" ]; then
 		sudo  $yum_cmd install xclip
     fi
     sed -i '/alias vi=vim/d' ~/.bashrc
     echo "alias vi=vim" >> ~/.bashrc
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    #cat vimrc >>~/.vimrc
 fi
 
-### pip3 ###
-if [ 'pip' = $1 ] || [ all == $1 ];
-then
-    if ! [ -x "$(command -v pip3)" ]; then
-        $yum_cmd install pip3
-    else
-        echo "pip3 installed"
-    fi
-fi
 
 if [ 'v2ray' = $1 ] || [ all == $1 ];
 then
@@ -149,4 +138,20 @@ fi
 if [ 'youtube' = $1 ] || [ all == $1 ];
 then
     pip install --upgrade --user youtube-dl
+fi
+
+### chromium 
+if [ 'chromium' = $1 ] || [ all == $1 ];
+then
+    sudo dnf install chromium
+fi
+
+### pip3 ###
+if [ 'pip' = $1 ] || [ all == $1 ];
+then
+    if ! [ -x "$(command -v pip3)" ]; then
+        $yum_cmd install pip3
+    else
+        echo "pip3 installed"
+    fi
 fi
