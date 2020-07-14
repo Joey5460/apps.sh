@@ -87,9 +87,19 @@ fi
 if [ 'android' = $1 ] || [ all == $1 ];
 then
     sed -i '/export ANDROID_HOME=~\/apps\/sdk-tools-linux/d' ~/.bashrc
+    sed -i '/export ANDROID_NDK_ROOT=$ANDROID_HOME\/ndk-bundle/d' ~/.bashrc
+    sed -i '/export ANDROID_SDK_ROOT=$ANDROID_HOME/d' ~/.bashrc
+    sed -i '/export JAVA_HOME=\/usr\/lib\/jvm\/java-openjdk/d' ~/.bashrc
     sed -i '/export PATH=$ANDROID_HOME\/tools:$ANDROID_HOME\/platform-tools:$PATH/d' ~/.bashrc
     echo 'export ANDROID_HOME=~/apps/sdk-tools-linux'>>~/.bashrc
+    echo 'export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle'>>~/.bashrc
+    echo 'export ANDROID_SDK_ROOT=$ANDROID_HOME'>>~/.bashrc
+    echo 'export JAVA_HOME=/usr/lib/jvm/java-openjdk'>>~/.bashrc
     echo 'export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH'>>~/.bashrc
+    #export JAVA_HOME=/usr/lib/jvm/java-openjdk
+    #export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
+    #export ANDROID_SDK_ROOT=$ANDROID_HOME
+
 fi
 
 ### repository###
@@ -127,10 +137,15 @@ if [ 'qt' = $1 ] || [ all == $1 ];
 then
     gcccfg
     makecfg
-    sed -i '/export PATH=~\/apps\/qt5\/5.15\/gcc_64\/bin:$PATH/d' ~/.bashrc
+    sed -i '/QTVER=5.15.0/d' ~/.bashrc
+    sed -i '/export PATH=~\/apps\/qt5\/$QTVER\/gcc_64\/bin:$PATH/d' ~/.bashrc
     sed -i '/export PATH=~\/apps\/qt5\/Tools\/QtCreator\/bin:$PATH/d' ~/.bashrc
-    echo 'export PATH=~/apps/qt5/5.15/gcc_64/bin:$PATH'>>~/.bashrc
+    sed -i '/alias qmakeandroid=~\/apps\/qt5\/$QTVER\/android\/bin\/qmake/d' ~/.bashrc
+    echo 'QTVER=5.15.0'>>~/.bashrc
+    echo 'export PATH=~/apps/qt5/$QTVER/gcc_64/bin:$PATH'>>~/.bashrc
     echo 'export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH'>>~/.bashrc
+    echo 'alias qmakeandroid=~/apps/qt5/$QTVER/android/bin/qmake'>>~/.bashrc
+
     sudo dnf install  mesa-libGL-devel
 fi
 
