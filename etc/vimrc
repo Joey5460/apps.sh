@@ -87,12 +87,14 @@ autocmd FileType cpp noremap <F12> :cw <CR> : /error<CR>
 autocmd FileType javascript noremap <F5> :wa <CR>: !sh  $PWD/build.sh <CR>
 autocmd FileType rst noremap <F7> :wa <CR>: !make <CR>
 autocmd FileType rst noremap <F5> :wa <CR>: !make run<CR>
+autocmd FileType qml noremap <F5> :wa <CR>: !qmlscene main.qml <CR>
 inoremap ,/  </<C-X><C-O>
 "autocmd sh !./run.sh
 
 """""
 "ctags
 "
-set tags+=./tags;~/projs
-set path+=~/projs/nSmart/**
+set tags+=./tags
+set tags+=~/.vim/tags/qt5
+
 vmap <C-c> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u

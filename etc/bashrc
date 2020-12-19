@@ -1,0 +1,33 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+alias vi=vim
+export PATH=~/apps.sh:$PATH
+alias notes="cd ~/projs/notes"
+alias toxchat="cd ~/projs/toxchat"
+export ANDROID_HOME=~/apps/sdk-tools-linux
+export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk-bundle
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export JAVA_HOME=/usr/lib/jvm/java-openjdk
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+QTVER=5.15.0
+export PATH=~/apps/qt5/$QTVER/gcc_64/bin:$PATH
+export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH
+alias qmakeandroid=~/apps/qt5/$QTVER/android/bin/qmake
+alias qmakewasm=~/apps/qt5/$QTVER/wasm_32/bin/qmake
+#bind -x '"\C-k":qmlscene main.qml'
