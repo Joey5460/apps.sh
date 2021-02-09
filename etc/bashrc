@@ -29,5 +29,6 @@ QTVER=5.15.0
 export PATH=~/apps/qt5/$QTVER/gcc_64/bin:$PATH
 export PATH=~/apps/qt5/Tools/QtCreator/bin:$PATH
 alias qmakeandroid=~/apps/qt5/$QTVER/android/bin/qmake
+alias androiddeployqt=~/apps/qt5/$QTVER/android/bin/androiddeployqt
 alias qmakewasm=~/apps/qt5/$QTVER/wasm_32/bin/qmake
 #bind -x '"\C-k":qmlscene main.qml'
